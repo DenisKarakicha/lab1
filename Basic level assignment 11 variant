@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std;
+
+struct Book
+{
+    char author[500];
+    char ganre[200];
+    char title[200];   
+    int circulation;
+    void bookinfo();
+    void readinfo();
+};
+
+void Book::bookinfo()
+{
+    cout <<endl <<"Book." << endl;
+    cout << "Author: " << author << endl;
+    cout << "Ganre: " << ganre << endl;
+    cout << "Title: " << title << endl;
+    cout << "Circulation: " << circulation << endl;
+}
+
+void Book::readinfo()
+{
+    cout << "Input authors: ";
+    cin.ignore(std::cin.rdbuf()->in_avail());
+    cin.getline(author, sizeof(author));
+
+    cout << "Input ganre: ";
+    cin.ignore(std::cin.rdbuf()->in_avail());
+    cin.getline(ganre, sizeof(ganre));
+
+    cout << "Input title: ";
+    cin.ignore(std::cin.rdbuf()->in_avail());
+    cin.getline(title, sizeof(title));
+
+    cout << "Input circulation: ";
+    cin.ignore(std::cin.rdbuf()->in_avail());
+    cin >> circulation;
+}
+
+void task11()
+{
+
+    const int N = 4;
+    Book library[N];
+    for (size_t i = 0; i < N; i++)
+    {
+        library[i].readinfo();
+        cout << endl;
+    }
+    cout << "Books with a circulation not exceeding 1000 copies:";
+    for (size_t i = 0; i < N; i++)
+    {
+        if (library[i].circulation < 10000)
+            library[i].bookinfo();
+    }
+
+
+}
+
+int main()
+{
+    cout << "Input your books" << endl;
+    task11();
+    
+}
